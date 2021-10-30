@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Color Picker</title>
+</head>
+<body>
+  <div class="ctner">
+    <button type="button">Select a color</button>
+  </div>
+  <footer>
+    <a href="https://www.chromestatus.com/feature/6304275594477568" target="_blank" rel="noopener">Chrome status feature : EyeDropper</a>
+    </footer>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .ctner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    }
+    button {
+      cursor: pointer;
+      width: 16rem;
+      transition: .3s;
+      font-size: 1rem;
+      font-weight: bold;
+      padding: .8rem 2rem;
+      color: #37474f;
+      background-color: white;
+      border-color: transparent;
+      border-radius: 5px;
+    }
+    button:hover {
+      box-shadow: -2px 1px 4px 1px #20202059;
+    }
+
+    footer {
+      position: absolute;
+      bottom: 0;
+      background-color: white;
+      padding: .4rem 1rem;
+      border-radius: 0 3px 0 0;
+    }
+    a {
+      color: #37474f;
+      font-size: 1.1rem;
+      text-decoration: none;
+    }
+    
+    </style>
+    <script>
+    const button = document.querySelector('button')
+    const ctner = document.querySelector('.ctner')
+    if ('EyeDropper' in window) {
+      const eyeDropper = new EyeDropper()
+      button.addEventListener('click', () => {
+        eyeDropper
+          .open()
+          .then(colorSelectionResult => {
+            document.body.style.backgroundColor = colorSelectionResult.sRGBHex
+            console.log(colorSelectionResult.sRGBHex)
+            console.log(document.body)
+            button.innerHTML = colorSelectionResult.sRGBHex
+          })
+          .catch(() => {
+            // The user canceled selection
+          })
+      })
+    } else {
+      // The EyeDropper API isn't supported
+      document.body.style.backgroundColor = "#2f3237"
+      ctner.style.display = 'none'
+    }
+    </script>
+  </body>
+</html>
