@@ -1,5 +1,5 @@
 # ColorPicker
-Available on Chrome v95. https://www.chromestatus.com/feature/6304275594477568
+Available since Chrome v95. https://www.chromestatus.com/feature/6304275594477568
 
 See [**EyeDropper API** browser compatibility](https://developer.mozilla.org/en-US/docs/Web/API/EyeDropper_API#browser_compatibility)
 
